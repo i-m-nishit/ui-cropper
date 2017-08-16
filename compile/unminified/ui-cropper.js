@@ -5,7 +5,7 @@
  * Copyright (c) 2017 Alex Kaul
  * License: MIT
  *
- * Generated at Thursday, July 20th, 2017, 6:44:47 PM
+ * Generated at Wednesday, August 16th, 2017, 6:07:49 PM
  */
 (function() {
 angular.module('uiCropper', []);
@@ -3545,7 +3545,7 @@ angular.module('uiCropper').directive('uiCropper', ['$timeout', 'cropHost', 'cro
       It also simplifies some of the canvas context manipulation
       with a set of helper functions.
     */
-    var CanvasImage = function(image) {
+    var CanvasImage = function (image) {
         this.canvas = document.createElement('canvas');
         this.context = this.canvas.getContext('2d');
 
@@ -3557,27 +3557,27 @@ angular.module('uiCropper').directive('uiCropper', ['$timeout', 'cropHost', 'cro
         this.context.drawImage(image, 0, 0, this.width, this.height);
     };
 
-    CanvasImage.prototype.clear = function() {
+    CanvasImage.prototype.clear = function () {
         this.context.clearRect(0, 0, this.width, this.height);
     };
 
-    CanvasImage.prototype.update = function(imageData) {
+    CanvasImage.prototype.update = function (imageData) {
         this.context.putImageData(imageData, 0, 0);
     };
 
-    CanvasImage.prototype.getPixelCount = function() {
+    CanvasImage.prototype.getPixelCount = function () {
         return this.width * this.height;
     };
 
-    CanvasImage.prototype.getImageData = function() {
+    CanvasImage.prototype.getImageData = function () {
         return this.context.getImageData(0, 0, this.width, this.height);
     };
 
-    CanvasImage.prototype.removeCanvas = function() {
+    CanvasImage.prototype.removeCanvas = function () {
         this.canvas.parentNode.removeChild(this.canvas);
     };
 
-    var ColorThief = function() {};
+    var  ColorThief = function () {};
 
     /*
      * getColor(sourceImage[, quality])
@@ -3592,7 +3592,7 @@ angular.module('uiCropper').directive('uiCropper', ['$timeout', 'cropHost', 'cro
      * most dominant color.
      *
      * */
-    ColorThief.prototype.getColor = function(sourceImage, quality) {
+    ColorThief.prototype.getColor = function (sourceImage, quality) {
         var palette = this.getPalette(sourceImage, 5, quality);
         var dominantColor = palette[0];
         return dominantColor;
@@ -4141,6 +4141,9 @@ angular.module('uiCropper').directive('uiCropper', ['$timeout', 'cropHost', 'cro
     /**
      * Export class to global
      */
+	if(window){
+		window.ColorThief = ColorThief;
+	};
     if (typeof define === 'function' && define.amd) {
         define([], function() {
             return ColorThief;
